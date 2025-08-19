@@ -13,7 +13,6 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import gqlClient from "@/services/gql"
-import { gql } from "graphql-request"
 import Link from "next/link"
 import { useState } from "react"
 import { toast } from "sonner"
@@ -56,7 +55,7 @@ export default function SignupPage() {
   return (
     <div className="flex h-screen items-center justify-center">
 
-      <Card className="w-full max-w-sm mt-30 ml-100">
+      <Card className="w-full max-w-sm ">
         <CardHeader>
           <CardTitle>Create your account</CardTitle>
           <CardDescription>
