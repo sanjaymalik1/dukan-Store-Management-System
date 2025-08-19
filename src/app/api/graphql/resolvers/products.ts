@@ -1,7 +1,7 @@
 import prismaClient from "@/services/prisma";
 import { ProductCategory } from "../../../../../generated/prisma";
 
-export async function addProduct(args : {
+export async function addProduct(_ : undefined,args : {
     title: string,
     description : string,
     imageUrl : string,
@@ -70,7 +70,7 @@ export async function getProduct(_ : undefined,args : {
 
 
 
-export async function createSale(args : {
+export async function createSale(_ : undefined,args : {
     productId : string,
     quantity : number
 }){

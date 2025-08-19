@@ -13,6 +13,8 @@ export default function Header() {
 
         <div className='flex flex-row justify-end gap-4'>
 
+          <h2>({user?.name})</h2>
+
           <div >
             <ThemeToggleBtn />
           </div>

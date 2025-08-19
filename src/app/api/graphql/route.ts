@@ -53,10 +53,10 @@
 // export const POST = handler as unknown as (req: NextRequest, context: typeof RouteContext) => Promise<Response>;
 
 
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 import { ApolloServer } from "@apollo/server";
 import { startServerAndCreateNextHandler } from "@as-integrations/next";
-import { createUser, getAllUsers, loginUser, updateRole, updateUserProfile } from "./resolvers/functions";
+import { createUser, getAllUsers, loginUser, signup, updateRole, updateUserProfile } from "./resolvers/functions";
 import typeDefs from "./type-defs";
 import { getUserFromCookies } from "@/lib/helper";
 import { addProduct, createSale, getAllProducts, getProduct } from "./resolvers/products";
@@ -75,7 +75,8 @@ const resolvers = {
     updateUserRole: updateRole,
     updateUserProfile,
     addProduct,
-    createSale
+    createSale,
+    signup
   }
 };
 

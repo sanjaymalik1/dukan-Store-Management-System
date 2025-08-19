@@ -13,7 +13,8 @@ const typeDefs = gql`
     updateUserRole(id : String!, role : String!) : Boolean,
     updateUserProfile(id : String!, name : String, email : String, username : String, avatar : String) : Boolean,
     addProduct(title: String!, description : String!, category: String!, price: Float!, stock: Int!, imageUrl: String!) : Product,
-    createSale(productId : String!, quantity : Int!) : Boolean
+    createSale(productId : String!, quantity : Int!) : Boolean,
+    signup(name : String!, email : String!, username : String!, password : String!) : User
   }
 
   type User{

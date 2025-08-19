@@ -39,6 +39,9 @@ export default function AddUserBtn() {
                 createUser : boolean
             }
 
+            // console.log(data);
+            
+
             if(data.createUser){
                 toast("User added successfully");
                 setName("");

@@ -1,13 +1,14 @@
 
 import HeaderLandingPage from '@/components/headers/header-landingpage'
 import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 import React from 'react'
 
 export default function LandingPage() {
   return (
     <main>
-      <HeaderLandingPage/>
-      <div 
+      <HeaderLandingPage />
+      <div
         className='relative min-h-screen flex flex-col items-center text-center pt-30 text-white bg-black bg-[radial-gradient(ellipse_50%_40%_at_50%_50%,rgba(245,165,36,0.3),rgba(255,255,255,0))]'
       >
         <div className='flex flex-col gap-10 items-center z-10 relative'>
@@ -15,13 +16,14 @@ export default function LandingPage() {
             Transform Retail Excellence with Dukan
           </h1>
           <p className='text-gray-300 max-w-2xl text-lg leading-relaxed'>
-            Streamline your business's financial management with our intuitive, 
-            scalable SaaS platform. Designed for enterprises, our solutions 
+            Streamline your business&apos;s financial management with our intuitive,
+            scalable SaaS platform. Designed for enterprises, our solutions
             simplify complex processes.
           </p>
-          <Button className='rounded-full w-fit text-black  px-4 py-5 font-semibold'>
+          <Link href={"/signup"}><Button className='rounded-full w-fit text-black  px-4 py-5 font-semibold'>
             Try For Free →
           </Button>
+          </Link>
         </div>
 
 
@@ -36,7 +38,7 @@ export default function LandingPage() {
           </ul>
         </div>
 
-       
+
 
       </div>
     </main>

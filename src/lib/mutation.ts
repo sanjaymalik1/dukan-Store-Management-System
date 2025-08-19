@@ -32,3 +32,15 @@ mutation Mutation($productId: String!, $quantity: Int!) {
   createSale(productId: $productId, quantity: $quantity)
 }
 `
+
+export const SIGNUP_QUERY = gql`
+mutation Mutation($name: String!, $email: String!, $username: String!, $password: String!) {
+  signup(name: $name, email: $email, username: $username, password: $password) {
+    id
+    name
+    username
+    email
+    avatar
+    role
+  }
+}`

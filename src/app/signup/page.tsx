@@ -12,21 +12,15 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-// import { gql } from "graphql-request"
+import gqlClient from "@/services/gql"
+import { gql } from "graphql-request"
 import Link from "next/link"
 import { useState } from "react"
+import { toast } from "sonner"
+import { SIGNUP_QUERY } from "@/lib/mutation"
+import { UserWithoutPassword } from "@/lib/types"
 
-// const SIGNUP_QUERY = gql`
-// mutation Mutation($name: String!, $email: String!, $username: String!, $password: String!) {
-//   createUser(name: $name, email: $email, username: $username, password: $password) {
-//     id
-//     email
-//     avatar
-//     name
-//     role
-//     username
-//   }
-// }`
+
 
 export default function SignupPage() {
   const [name, setName] = useState("");
@@ -35,7 +29,28 @@ export default function SignupPage() {
   const [password, setPassword] = useState("");
 
   async function handleSignup() {
+    
+    try{
+      const res = await gqlClient.request(SIGNUP_QUERY,{
+        name,
+        email,
+        username,
+        password
+      }) as {signup : UserWithoutPassword}
 
+      // console.log(res);
+      
+
+      if(res.signup){
+        toast("Account created successfully");
+        window.location.href = "/dashboard/admin"
+      }else{
+        toast("Username/email already taken")
+
+      }
+    }catch{
+      toast("something went wrong")
+    }
   }
 
   return (

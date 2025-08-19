@@ -13,7 +13,7 @@ export default async function Layout({ children }: {
     console.log(user);
 
     if (!user) {
-        redirect("/login")
+        redirect("/")
     }
 
     return (

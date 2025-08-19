@@ -41,13 +41,45 @@ export async function loginUser(_ : undefined, args: {
 }
 
 
-export async function createUser(args: {
+export async function signup(_ : undefined,args: {
     name: string,
     email: string,
     username: string,
     password: string
 }) {
+    try{
+        const user = await prismaClient.user.create({
+            data : {
+                ...args,
+                role : "admin"
+            }
+        })
+
+        if(user){
+            const userCookies = await cookies();
+            const token = createToken({id : user.id})
+            if(token) userCookies.set("finalToken",token)
+            return user
+        }else{
+            return null
+        }
+    }catch{
+        return null
+    }
+
+}
+
+
+export async function createUser(_ : undefined,args: {
+    name: string,
+    email: string,
+    username: string,
+    password: string,
+    role : RoleType
+}) {
     // const {name,email,username,password} = args;
+    // console.log(args);
+    
     try {
         // const userObj = {name,email,username,password}
         const currentUser = await getUserFromCookies();
@@ -57,21 +89,22 @@ export async function createUser(args: {
             const user = await prismaClient.user.create({
                 data: args
             })
-
+            // console.log(user);
+            
             return user;
         } else {
             return null;
         }
 
     } catch (error) {
-         console.log(error);
+        //  console.log(error);
         return null;
     }
 
 }
 
 
-export async function updateRole(args: {
+export async function updateRole(_ : undefined,args: {
     id: string,
     role: RoleType
 }) {
@@ -105,7 +138,7 @@ export async function updateRole(args: {
 }
 
 
-export async function updateUserProfile(args: {
+export async function updateUserProfile(_ : undefined,args: {
     id: string,
     name : string,
     email : string,
@@ -146,7 +179,7 @@ export async function updateUserProfile(args: {
 }
 
 
-export async function getAllUsers(args : {
+export async function getAllUsers(_ : undefined,args : {
     role : "staff" | "manager"
 }){
     try{
