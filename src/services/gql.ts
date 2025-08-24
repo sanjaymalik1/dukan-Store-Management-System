@@ -10,12 +10,13 @@
 
 import { GraphQLClient } from "graphql-request";
 
-const endpoint =
-  typeof window === "undefined"
-    ? `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/api/graphql`
-    : "/api/graphql";
+// const endpoint =
+//   typeof window === "undefined"
+//     ? `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/api/graphql`
+//     : "/api/graphql";
 
 
+const endpoint = `${process.env.NEXT_PUBLIC_SITE_URL}/api/graphql`
 console.log(endpoint);
 
 const gqlClient = new GraphQLClient(endpoint);
