@@ -12,8 +12,8 @@ export async function getUserFromCookies() {
     const data = verifyToken(token);
 
     if (!data) return null;
-
-    const user = await prismaClient.user.findUnique({
+    try{
+        const user = await prismaClient.user.findUnique({
         where: {
             id: data.id
         },
@@ -34,4 +34,10 @@ export async function getUserFromCookies() {
     if (!user) return null;
 
     return user;
+    }catch(error){
+        console.log("error in fetching user from cookies : ",error);
+        return null;
+        
+    }
+    
 }
