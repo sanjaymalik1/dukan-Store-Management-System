@@ -3,26 +3,35 @@ import prismaClient from "@/services/prisma";
 import { cookies } from "next/headers";
 
 
-export async function getUserFromCookies(){
+export async function getUserFromCookies() {
     const userCookies = await cookies();
     const token = userCookies.get("finalToken")?.value;
 
-    if(!token) return null;
-    
+    if (!token) return null;
+
     const data = verifyToken(token);
-    
-    if(!data) return null;
+
+    if (!data) return null;
 
     const user = await prismaClient.user.findUnique({
-        where : {
-            id : data.id
+        where: {
+            id: data.id
         },
-        omit : {
-            password : true
+        select: {
+            id: true,
+            name: true,
+            email: true,
+            role: true,
+            username : true,
+            avatar : true
+            // just don’t include password, so it won’t be returned
         }
+        // omit: {
+        //     password: true
+        // }
     })
 
-    if(!user) return null;
+    if (!user) return null;
 
     return user;
 }
