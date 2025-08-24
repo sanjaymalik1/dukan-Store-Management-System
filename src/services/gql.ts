@@ -15,6 +15,9 @@ const endpoint =
     ? `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/api/graphql`
     : "/api/graphql";
 
+
+console.log(endpoint);
+
 const gqlClient = new GraphQLClient(endpoint);
 
 export default gqlClient;
